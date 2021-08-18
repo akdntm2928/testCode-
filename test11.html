@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(skill, skill_trees) {
+            let skillArr = skill.split('');
+            
+            for(let i = 0; i<skill_trees.length; i++){
+                let check = 0;
+
+                for(let j=0; j<skill_trees[i].length; j++){
+                    for(let z = 0; z<skill.length; z++){
+                        if(skillArr[z] ==skill_trees[i][j]){
+                            check +=1;
+                        }
+                        if(skillArr[z+1] ==skill_trees[i][j] && check != z+1){
+                            skill_trees[i] ='delete'
+                            break;
+                        }
+                    }
+        
+                }
+
+            }
+            return skill_trees.filter((e)=>e != 'delete').length;
+            
+        }
+        console.log(solution("CBDK", ["CB", "CXYB", "BD", "AECD", "ABC", "AEX", "CDB", "CBKD", "IJCB", "LMDK"]));
+    </script>
+</body>
+</html>

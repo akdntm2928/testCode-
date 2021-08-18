@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function combination(arr,select){
+            const  result =[];
+            if(select ===1) return arr.map((v)=>[v])
+           
+            arr.forEach((v,index,arr)=>{
+                const fixed =v;
+                const refer = arr.slice(index+1)
+                // const refer = arr // 중복조합
+                const combinations = combination(refer,select-1);
+                const combinatfix = combinations.map((v)=>[fixed,...v])
+                result.push(...combinatfix)
+            })
+            return result
+        }
+
+        function solution(numbers) {
+            var combinations = combination(numbers,numbers.length-1);
+            console.log(combinations);
+        }
+        console.log(solution([6, 10, 2]))
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function parmutaion(numbers,select){
+            if(select ===1){ return numbers.map((v)=>[v])}
+            const result =[];
+            numbers.forEach((val,index,arr)=>{
+                
+                const refer = arr.slice(index+1);
+                const combinations = parmutaion(refer,select-1);
+                const combinatfix = combinations.map((v)=>[val,...v])
+                result.push(...combinatfix)
+            })
+            return result
+        }
+        function solution(numbers) {
+            var result = parmutaion(numbers,2).map((v)=> v[0]+v[1]);
+            result = new Set(result)
+            result = [...result].sort((a,b)=> a-b);
+            
+            
+            return result;
+        }
+
+        solution([5,0,2,7]);
+    </script>
+</body>
+</html>

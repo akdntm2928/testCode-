@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(scores) {
+            let searchVal=[]
+            let rearrangement=[]
+            let result=[];
+            for(let i = 0;  i<scores.length; i++){
+                searchVal[i] = scores[i][i]
+            }
+   
+            for(let i = 0; i<scores.length; i++){
+                rearrangement[i] =new Array();
+                for(let j = 0; j<scores.length; j++){   
+                    rearrangement[i][j]=scores[j][i];
+                }
+            }
+
+            for(let i = 0; i<rearrangement.length; i++){
+                let min = Math.min(...rearrangement[i])
+                let max = Math.max(...rearrangement[i])
+                let cnt = 0;
+                let sum = 0;
+                for(let j =0; j<rearrangement.length; j++){
+                    let check = rearrangement[i].filter(element => max === element).length;
+                    if(check !=rearrangement[i].length ){
+                        let maxCheck = rearrangement[i].filter(element => max === element).length;
+                        if(max == searchVal[i] && searchVal[i]== rearrangement[i][j] && maxCheck == 1 ){
+                            continue;
+                        }
+                        let minCheck = rearrangement[i].filter(element => min === element).length;
+                        if(min == searchVal[i] && searchVal[i]== rearrangement[i][j] && minCheck ==1){
+                            continue;
+                        }
+
+                        // let arrcnt = rearrangement[i].filter(element => min === element).length;
+                        //     if(arrcnt<3 && i==j){
+                        //         continue;
+                        // }
+                    }
+                    sum += rearrangement[i][j];
+                    cnt += 1;
+                }
+                
+                if(sum/cnt >=90){
+                    result.push('A');
+                }else if(90 > sum/cnt && sum/cnt >= 80 ){
+                    result.push('B');
+                }else if(80 > sum/cnt && sum/cnt >= 70 ){
+                    result.push('C');
+                }else if(70 > sum/cnt && sum/cnt >= 50 ){
+                    result.push('D');
+                }else if(50 > sum/cnt  ){
+                    result.push('F');
+                }
+            }
+            return result.join('')
+        }
+        console.log(solution([[70,49,90],[68,50,38],[73,31,100]]));
+    </script>
+</body>
+</html>

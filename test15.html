@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(N, stages) {
+            let result = []
+            let failArr = [];
+            for(let i = 1;  i <= N; i++){
+                let select = 0
+                let cnt = 0
+                for(let j = 0; j<stages.length; j++){
+                    if(i == stages[j]){
+                        select += 1;
+                    }
+                    if( i <=stages[j]){
+                        cnt +=1;
+                    }
+                }
+
+                let mul = 0;
+                console.log()
+                if(select != 0 && cnt != 0){
+                    mul =select/cnt;
+                }
+                let failobj = {
+                    key:i,
+                    val: mul
+                };
+                failArr.push(failobj);
+            }
+
+            for(let a = 0;  a < failArr.length; a++){
+                for(let b=0; b<failArr.length; b++){
+                    if(failArr[a].val> failArr[b].val){
+                        let temp = failArr[b];
+                        failArr[b] =failArr[a];
+                        failArr[a] = temp;
+      
+                    }
+                }
+            }      
+
+            for(let a = 0;  a < failArr.length; a++){
+                for(let b=0; b<failArr.length; b++){
+                    if(failArr[a].val ==0 && failArr[b].val ==0){
+                        if(failArr[a].key < failArr[b].key){
+                            let temp = failArr[b];
+                            failArr[b] =failArr[a];
+                            failArr[a] = temp;
+                        }
+                    }
+                }
+            }           
+            for(let a = 0;  a < failArr.length; a++){
+                result.push(failArr[a].key);
+            }
+           return result;
+        }
+        console.log( solution(5,[2,1,2,4,2,4,3,3]) )
+    </script>
+</body>
+</html>

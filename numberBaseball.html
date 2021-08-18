@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    
+<body>  
+    <div>
+        <form id ='form'>
+            <input type='text' id='input'></input>
+            <button id ='btn'>입력</button>
+        </form>
+        <div id='logs'>
+        </div>
+    </div>
+
+    <script>
+        const $form =document.querySelector('#form');
+        const $input =document.querySelector('#input');
+        const $btn =document.querySelector('#btn');
+        const $logs =document.querySelector('#logs');
+   
+        let answer  =[1,2,3,4,5,6,7,8,9]; // 랜덤 4자리 중복 X
+
+        while(answer.length >4){
+            const index = Math.floor(Math.random() * answer.length);
+            answer.splice(index,1);
+        }
+        console.log(answer);
+        
+        var tries = [];
+        function inputCheck (value){
+            if(isNaN(value)){
+                alert('숫자을 입력해주세요');
+                return false
+            }
+            if(value.length != 4){
+                alert('숫자 4자리을 입력해주세여');
+                return false
+            }
+            if(new Set(value).size !==4){
+                alert('중복없이 4자리을 입력해주세요');
+                return false
+            }
+            if(tries.includes(value)){
+                alert('이미 등록 한 숫자조합입니다.');
+                return false
+            }
+            $input.textContent = '';
+            return true
+        }
+        const onClick = (e)=>{
+            e.preventDefault();
+            const value = $input.value;
+
+            if(!inputCheck(value)){
+                return 
+            }
+
+            if(answer.join('') == value){
+               $logs.append('홈런입니다~~');
+               return;
+            }
+    
+            if(tries.length >9){
+                $logs.append(`10번시도 끝.`);
+                return false
+            }
+
+            let strike =0;
+            let ball = 0;
+            for(let i = 0; i<answer.length; i++){
+          
+                const index = answer.indexOf(parseInt(value[i],10));
+                if(index >-1){
+                    if(index ==i){
+                        strike +=1;
+                    }else{
+                        ball +=1
+                    }
+
+                }
+            }
+
+            $logs.append(`${value}   스트라이크 ${strike} , 볼 ${ball} 입니다`,document.createElement('br'));
+            
+        }
+    
+        $btn.addEventListener('click',onClick);
+        
+    </script>
+</body>
+</html>

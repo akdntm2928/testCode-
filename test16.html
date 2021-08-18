@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(progresses, speeds) {
+                        var result =[]
+            
+                        while(progresses.length > 0){
+                    
+                            while(progresses[0] < 100){
+                                progresses= progresses.map((v,idx)=>v+speeds[idx])
+            
+                            }
+                        
+                    
+                            let cnt= 0;
+                            var lengts=progresses.length;
+                            for(let i = 0; i<=lengts; i++){
+                                
+                                if(progresses[0] >= 100){
+                            
+                                    cnt =  cnt +1;
+                                    progresses.splice(0,1);
+                        
+                                }
+                                if(progresses[0] < 100){
+                                    
+                                    break;
+                                }
+                            }
+                            result.push(cnt);
+                        
+                        }
+                        return result 
+            }
+        
+        console.log( solution([93, 30, 55],[1, 30, 5]) )
+    </script>
+</body>
+</html>

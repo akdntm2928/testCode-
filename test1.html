@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function permutation(arr,select){
+
+            const result=[]
+            if(select ===1 ){
+                return arr.map((x)=>[x])
+            }
+            arr.forEach((val,index,arr)=>{
+                const fixed = val;
+                const subarr = arr.slice(index+1);
+                const permutations = permutation(subarr,select-1);
+                const permutationArr = permutations.map((v)=>[fixed,...v])
+                result.push(...permutationArr);
+            })
+            return result
+            
+        }
+        function solution(nums) {
+            var select =3
+            var arr = permutation(nums,select)
+            console.log(arr);
+            
+            
+            
+            
+        }
+
+        solution([1,2,3,4]);
+        
+                
+    </script>
+</body>
+</html>
