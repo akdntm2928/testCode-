@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   
+        function solution(table, languages, preference) {
+            let value ='';
+            let obj={};     
+            let arr=[];
+            let result =[]
+             table.forEach((v,idx)=>{
+                let data = v.split(' ')
+                let key = data[0];
+                arr.push(data[0]);
+                data.splice(0,1);
+                obj[key]=data
+             })
+             let valobj=[]
+             languages.forEach((v,idx)=>{
+                valobj[v]=preference[idx]
+             })
+             
+             for(let v in obj){
+                let leng  =obj[v].length +1
+                let val = 0;
+                 obj[v].forEach((vv,idx)=>{
+                    leng = leng-1;
+                    if(languages.includes(vv)){
+                        val += leng* valobj[vv]   
+                    }
+                 });
+                result.push({target:v,val:val})
+             }
+             result.sort((a,b)=>{
+                 return a.val-b.val;
+             })
+             let result2 =[]
+             result = result.filter((val,index,arr)=>{
+                if(val.val ==arr[arr.length-1].val){
+                   result2.push(val.target)
+                }
+             })
+             result2= result2.sort();
+             
+
+             return result2[0];
+        }
+        solution(["SI JAVA JAVASCRIPT SQL PYTHON C#", "CONTENTS JAVASCRIPT JAVA PYTHON SQL C++", "HARDWARE C C++ PYTHON JAVA JAVASCRIPT", "PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP", "GAME C++ C# JAVASCRIPT C JAVA"],["JAVA", "JAVASCRIPT"],[7, 5]);
+    </script>
+</body>
+</html>
+

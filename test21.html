@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function solution(arr){
+            var answer = [arr[0]]; //이 배열의 top 과 비교해서 같으면 안 넣고, 다르면 push
+            
+            for (var i=1; i< arr.length; i++) {
+               var top = answer[answer.length-1]; // 이 부분이 중요했다.  top 업데이트 
+               if (top !== arr[i]) {
+                     answer.push(arr[i])
+               }
+            }
+            
+            return answer;
+         }
+        console.log(solution([1,1,3,3,0,1,1]));
+
+      //   [1,1,3,3,0,1,1]	[1,3,0,1]
+      //   [4,4,4,3,3]	[4,3]
+    </script>
+</body>
+</html>
+
