@@ -9,9 +9,7 @@
 <body>
     <script>
         function solution(N, stages) {
-            var arr  =stages.filter((el,idx)=>stages.indexOf(el) === idx );
             var stagesArr = [];
-
             for(var i =1; i <= N;  i++){
                 if(i <= N){
                     var count  = stages.filter((el,idx) => i == el).length;
