@@ -15,7 +15,6 @@
             arr.forEach((v,index,arr)=>{
                 const fixed =v;
                 const refer = arr.slice(index+1)
-                // const refer = arr // 중복조합
                 const combinations = combination(refer,select-1);
                 const combinatfix = combinations.map((v)=>[fixed,...v])
                 result.push(...combinatfix)

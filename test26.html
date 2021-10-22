@@ -48,14 +48,20 @@ n	times	return
             var maxtime = (Math.max(...times) * n)
             var mid  =maxtime/2;
             while(mintime <= maxtime){
+                // 중간 값으로 나눌떄 사람이 수
                 var personCnt  = times.reduce((result,time)=> result+Math.floor(mid/time),0);
+                // 사람수 을 체크하여 최소값 구하는 로직
                 if( n<=personCnt){
                     maxtime = mid-1;
                 }else if(n > personCnt){
                     mintime = mid+1;
                 }
+                // 중간값 구하는공식 리턴
                 mid =Math.floor((mintime+maxtime)/2);
+
             }
+
+            
       
             return mintime
         }
